@@ -1,0 +1,64 @@
+---
+title: "CoxRegressionReport"
+author: "OpenCoDa"
+date: "30 April 2018"
+output: html_document
+runtime: shiny
+params:
+  n: NA
+  dataSummary: NA
+  avgCODA: NA
+  varCODA: NA
+  schoenfeldTest: NA
+  regSummary1: NA
+  hypTest1: NA
+  zList1: NA
+  regTable1: NA
+  regTable2: NA
+---
+
+The study included `r params$n` individuals. The data is summarised below:
+
+```{r}
+params$dataSummary
+params$avgCODA
+params$varCODA[,-1]
+```
+
+The proportional hazards assumption was assessed using Schoenfeld Residuals, which are set out below.
+
+```{r}
+params$schoenfeldTest[,-1]
+```
+
+The overall p-value of the fitted model (vs H0: No association with any covariates or exposure variables)  and coefficient of determination (R^2) can be found from:
+
+```{r}
+params$regSummary1
+```
+
+The overall p-value of the fitted model (vs H0: No association with exposure variables (=PA)) can be found from:
+
+```{r}
+params$hypTest1
+```
+
+The following rotations of the ilr coordinates are calculated
+
+```{r}
+params$zList1
+```
+
+The outcomes of the models are shown below. 
+
+```{r}
+params$regTable1[,-1]
+```
+
+The covariance matrix of the model coefficients are shown below. 
+
+```{r}
+params$regTable2[,-1]
+```
+
+This report has been designed for OpenCoDa to put together a meta analysis. It is not fully documented, and participating teams should be careful in interpreting its output. Covariates are shown first. ilr coordinates are shown next. ilr coordinates should be considered in isolation. It is not appropriate (for example) to consider all of these together.
